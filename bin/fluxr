@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+require 'fluxr'
+
+text = File.read(ARGV[0])
+slides = Fluxr::Parser.new.parse(text)
+
+
+Fluxr::Server.run! :slides => slides

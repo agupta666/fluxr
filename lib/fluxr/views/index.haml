@@ -1,0 +1,29 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "author"}
+    %title Fluxr
+    %link{ :rel => "stylesheet", :type => "text/css", :href => "/css/bootstrap.css"}
+    %link{ :rel => "stylesheet", :type => "text/css", :href => "/css/fluxr.css"}
+    %script{:type => 'text/javascript', :src => '/js/jquery.js'}
+    %script{:type => 'text/javascript', :src => '/js/bootstrap.js'}
+    %script{:type => 'text/javascript', :src => '/js/fluxr.js'}
+  %body
+    #wrap
+      .container#main
+    #slides
+      - @slides.each_with_index do |slide, i|
+        .slide
+          .page-header
+            %h1= slide.title
+          .lead= Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(slide.content)
+    #footer
+      .container
+:Javascript
+  $(function(){
+    var fluxr = new Fluxr();
+    fluxr.start();
+  });
